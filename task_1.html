@@ -1,0 +1,77 @@
+<!--Сделать страницу сохранения пользователей.
+
+Посетитель заходит на страницу, появляется окно с вопросом - ‘Какое кол-во пользователей вы хотите добавить?’,
+
+Указанное кол-во раз появляется окно, где через запятую указывается имя, возвраст, профессия.
+
+Данные записываются в массив типа [{name: 'Петя', age: 12 ... }, ..., { ... }]
+
+После появляется окно где можно указать по какому полю(ключу) сортировать
+
+Результат в отсотированном виде, выводится в специальном div c id result.
+
+Дополнительное задание.
+
+Если в поле сортировки ввести Sum {имя поля}:
+
+{имя поля} = age вывести суммарный возвраст
+
+{имя поля} != age вывести все значения введенного поля отсортированные через запятую.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page</title>
+</head>
+
+<body>
+	
+    <h1>Какая-то страница</h1>
+	<div id='result'>
+	
+	</div>
+	<script>
+	var num = prompt("Какое кол-во пользователей вы хотите добавить?");
+	
+	var all_data = [];
+	for (var i=0; i < num; i++) {
+		var str = prompt("Укажите через запятую: имя, возвраст, профессия");
+		var arr = str.split(',');
+		var data = {};
+		
+		data['name'] = arr[0];	//перевожу в ассоц массив
+		data['age'] = arr[1];
+		data['prof'] = arr[2];
+		all_data.push(data); 		
+		//all_data[i] = data;	
+	}
+	
+	
+	var sorty = prompt("По какому полю сортировать: name age prof ?");  //пытаюсь отсортировать
+	var sort_all_data = all_data.sort(function (a, b) {
+		  if (a[sorty] > b[sorty]) {
+		  console.log(a[sorty]);
+			return 1;
+		  }
+		  if (a[sorty] < b[sorty]) {
+		  console.log(a[sorty]);
+			return -1;
+		  }
+		  return 0;
+	});
+	//console.log(sort_all_data);
+	
+//		вывод в браузер
+	var res = '';
+	for (var i=0; i<num; i++) {
+		// перевожу в строку для вывода
+		var res1 = sort_all_data[i]['name']+' '+sort_all_data[i]['age']+' '+sort_all_data[i]['prof']+'<br>';
+		res += res1;
+		var a = document.getElementById('result');
+		a.innerHTML = res; 
+	}
+     </script>
+</body>
+</html>
+
