@@ -1,0 +1,126 @@
+<!--Задание 1.
+Функция - строковый буфер.
+В некоторых языках программирования существует объект «строковый буфер», который аккумулирует внутри себя значения.
+Его функционал состоит из трех возможностей:
+•	добавить значение в буфер
+•	получить текущее содержимое
+•	очистить текущее содержимое
+Задача – реализовать строковый буфер на функциях в JS:
+•	вызов makeBuffer должен возвращать такую функцию, которая при вызове buffer(value) добавляет значение в некоторое внутреннее хранилище, а при вызове без аргументов buffer() – возвращает его
+var buffer = makeBuffer();
+
+buffer('3');
+buffer('some text value');
+buffer(1);
+
+buffer(); // [{test: 1}, 'some text value', 1]
+•	при клике на кнопку ‘Clear buffer’, очищает буфер
+buffer.clear() 
+•	при клике на кнопку ‘Add buffer’ добавить значение из поля bufferVal к буферу
+<input type='text' id="bufferVal" value=""/>
+•	при клике на кнопку ‘Show buffer’вызов buffer() выведет все значения, в bufferResult
+<div id="bufferResult"></div>
+Пример:
+function makeBuffer() { /* ваш код */ }
+
+var buffer = makeBuffer();
+
+// клик по кнопке Add buffer
+...
+buffer('Замыкания');
+...
+buffer(' Использовать');
+...
+buffer(' Нужно!');
+
+// клик по кнопке Show buffer
+...
+buffer(); // Замыкания Использовать Нужно!  
+
+// клик по кнопке Clear buffer
+...
+buffer.clear();
+
+// клик по кнопке Show buffer
+...
+buffer(); // ""
+•	буфер должен преобразовывать все данные к строковому типу:
+var buffer = makeBuffer();
+buffer(0);
+buffer(1);
+buffer(0);
+
+console.log( buffer() ); // '010'
+•	решение не должно использовать глобальные переменные.-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page</title>
+</head>
+
+<body>
+	
+    <h1>Буфер</h1>
+	
+	<form action="#" name="my" >
+    <p>
+		<label for="bufferVal">Добавить в буфер:</label><br>
+        <input type='text' id="bufferVal" value="abc" name='input'/><br>
+        
+		<button type='buttom' id='add'>Add buffer</button>
+    </p>
+        
+    <p>
+        <button type='buttom' id='clear'>Clear buffer</button>
+    </p>
+	<p>
+        <button type='buttom' id='show'>Show buffer</button>
+    </p>
+</form>
+
+<div id="bufferResult" style='min-height: 50px; border: 4px double black;'>
+	
+</div>
+
+<script>
+	function makeBuffer() {
+      var str = '';
+      
+      function buf (val) {
+        if (arguments.length == 0)
+        return str;
+        str += val;
+      }
+      
+      buf.clear = function() {
+        str = '';
+      }
+     return buf;
+    }
+	
+	// получение значения из формы
+	function getName(){
+		//var name = document.forms['my'].elements['input'].value; // один вариант
+		var name = document.getElementById('bufferVal').value; // второй вариант
+		return name;
+	}
+	
+	var buffer = makeBuffer();
+	
+	var add = document.getElementById('add');
+	var clear = document.getElementById('clear');
+	var show = document.getElementById('show');
+	
+	add.addEventListener("click", function (){buffer(getName())});// добавить в буфер
+	clear.addEventListener("click", function (){buffer.clear()}); // очистить буфер
+	show.addEventListener("click", function (){document.getElementById('bufferResult').innerHTML = buffer();}); // показать буфер
+	
+</script>
+</body>
+</html>
+
+
+
