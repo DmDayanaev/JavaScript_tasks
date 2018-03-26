@@ -56,71 +56,76 @@ console.log( buffer() ); // '010'
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Page</title>
 </head>
 
 <body>
-	
+
     <h1>Буфер</h1>
-	
-	<form action="#" name="my" >
-    <p>
-		<label for="bufferVal">Добавить в буфер:</label><br>
-        <input type='text' id="bufferVal" value="abc" name='input'/><br>
-        
-		<button type='buttom' id='add'>Add buffer</button>
-    </p>
-        
-    <p>
-        <button type='buttom' id='clear'>Clear buffer</button>
-    </p>
-	<p>
-        <button type='buttom' id='show'>Show buffer</button>
-    </p>
-</form>
 
-<div id="bufferResult" style='min-height: 50px; border: 4px double black;'>
-	
-</div>
+    <form action="#" name="my">
+        <p>
+            <label for="bufferVal">Добавить в буфер:</label><br>
+            <input type='text' id="bufferVal" value="abc" name='input' /><br>
 
-<script>
-	function makeBuffer() {
-      var str = '';
-      
-      function buf (val) {
-        if (arguments.length == 0)
-        return str;
-        str += val;
-      }
-      
-      buf.clear = function() {
-        str = '';
-      }
-     return buf;
-    }
-	
-	// получение значения из формы
-	function getName(){
-		//var name = document.forms['my'].elements['input'].value; // один вариант
-		var name = document.getElementById('bufferVal').value; // второй вариант
-		return name;
-	}
-	
-	var buffer = makeBuffer();
-	
-	var add = document.getElementById('add');
-	var clear = document.getElementById('clear');
-	var show = document.getElementById('show');
-	
-	add.addEventListener("click", function (){buffer(getName())});// добавить в буфер
-	clear.addEventListener("click", function (){buffer.clear()}); // очистить буфер
-	show.addEventListener("click", function (){document.getElementById('bufferResult').innerHTML = buffer();}); // показать буфер
-	
-</script>
+            <button type='buttom' id='add'>Add buffer</button>
+        </p>
+
+        <p>
+            <button type='buttom' id='clear'>Clear buffer</button>
+        </p>
+        <p>
+            <button type='buttom' id='show'>Show buffer</button>
+        </p>
+    </form>
+
+    <div id="bufferResult" style='min-height: 50px; border: 4px double black;'>
+
+    </div>
+
+    <script>
+        function makeBuffer() {
+            var str = '';
+
+            function buf(val) {
+                if (arguments.length == 0)
+                    return str;
+                str += val;
+            }
+
+            buf.clear = function() {
+                str = '';
+            }
+            return buf;
+        }
+
+        // получение значения из формы
+        function getName() {
+            //var name = document.forms['my'].elements['input'].value; // один вариант
+            var name = document.getElementById('bufferVal').value; // второй вариант
+            return name;
+        }
+
+        var buffer = makeBuffer();
+
+        var add = document.getElementById('add');
+        var clear = document.getElementById('clear');
+        var show = document.getElementById('show');
+
+        add.addEventListener("click", function() {
+            buffer(getName())
+        }); // добавить в буфер
+        clear.addEventListener("click", function() {
+            buffer.clear()
+        }); // очистить буфер
+        show.addEventListener("click", function() {
+            document.getElementById('bufferResult').innerHTML = buffer();
+        }); // показать буфер
+    </script>
 </body>
+
 </html>
-
-
 

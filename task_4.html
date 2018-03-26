@@ -53,91 +53,89 @@ director.setWorkerRate('Петя', 11);
 
 
 <script>
+    //Реализуйте класс Worker
+    //  Конструктор Worker
+    function Worker(name, surname, rate, days) {
+        this.name = name;
+        this.surname = surname;
+        this.rate = rate;
+        this.days = days;
+    }
 
+    // Методы - в прототип
+    Worker.prototype.getSalary = function() {
+        console.log('Зарплата: ' + this.rate * this.days);
+    }
 
-//Реализуйте класс Worker
-//  Конструктор Worker
-function Worker(name, surname, rate, days) {
-	this.name = name;
-	this.surname = surname;
-	this.rate = rate;
-	this.days = days;
-}
-
-// Методы - в прототип
-Worker.prototype.getSalary = function() {
-	console.log ('Зарплата: '+this.rate*this.days);
-}
-
-var worker00 = new Worker(   
-        'Иван', 
+    var worker00 = new Worker(
+        'Иван',
         'Иванов',
-        20, 
+        20,
         20
-);
-var worker01 = new Worker(   
-        'Петр', 
+    );
+    var worker01 = new Worker(
+        'Петр',
         'Петров',
-        15, 
+        15,
         22
-);
-var worker02 = new Worker(   
-        'Сидор', 
+    );
+    var worker02 = new Worker(
+        'Сидор',
         'Сидоров',
-        25, 
+        25,
         18
-);
-//console.log(worker00.name);
+    );
+    //console.log(worker00.name);
 
-//добавьте метод getTotalSalary() выводящий сумму их зарплат - не понятно куда и как добавить этот метод
+    //добавьте метод getTotalSalary() выводящий сумму их зарплат - не понятно куда и как добавить этот метод
 
-//Создайте еще один класс Director 
-function Director (name, surname, rate, days) {
-	Worker.apply(this, arguments);
-}
-// Наследование
-Director.prototype = Object.create(Worker.prototype);
-Director.prototype.constructor = Director;
+    //Создайте еще один класс Director 
+    function Director(name, surname, rate, days) {
+        Worker.apply(this, arguments);
+    }
+    // Наследование
+    Director.prototype = Object.create(Worker.prototype);
+    Director.prototype.constructor = Director;
 
-//добавит работника в список
-Director.prototype.addWorker = function(workerName, workerSurname, workerRate, workerDays) {
-	var newWorker = this.workerName;
-	newWorker = new Worker(this.workerName = workerName,
-								this.workerSurname = workerSurname,
-								this.workerRate = workerRate,
-								this.workerDays = workerDays);
-	return newWorker;
-} 
+    //добавит работника в список
+    Director.prototype.addWorker = function(workerName, workerSurname, workerRate, workerDays) {
+        var newWorker = this.workerName;
+        newWorker = new Worker(this.workerName = workerName,
+            this.workerSurname = workerSurname,
+            this.workerRate = workerRate,
+            this.workerDays = workerDays);
+        return newWorker;
+    }
 
-//удалит работника из списока
-Director.prototype.removeWorker = function(workerName) {
-	delete (this.workerName = workerName);
-} 
+    //удалит работника из списока
+    Director.prototype.removeWorker = function(workerName) {
+        delete(this.workerName = workerName);
+    }
 
-//получить все данные работника
-Director.prototype.getWorker = function(workerName) {
-	console.log ('Работник ' + this.workerName.name+ this.workerName.surname+ this.workerName.rate+ this.workerName.days)
-} 
+    //получить все данные работника
+    Director.prototype.getWorker = function(workerName) {
+        console.log('Работник ' + this.workerName.name + this.workerName.surname + this.workerName.rate + this.workerName.days)
+    }
 
-// обновить rate для работника
-Director.prototype.setWorkerRate= function(workerName, rate) {
-	this.workerName.rate = this.rate;
-}
+    // обновить rate для работника
+    Director.prototype.setWorkerRate = function(workerName, rate) {
+        this.workerName.rate = this.rate;
+    }
 
-var director = new Director(
-		'Alec', 
+    var director = new Director(
+        'Alec',
         'P',
-        30, 
+        30,
         20
-   );
+    );
 
-console.log(director.getSalary());
-console.log (director.addWorker('Петя', 'Петров', 10, 20));
-//console.log (director.removeWorker('Петя'));
-console.log (director.getWorker(worker01));
-//console.log (director.setWorkerRate('Петя', 11));
-
+    console.log(director.getSalary());
+    console.log(director.addWorker('Петя', 'Петров', 10, 20));
+    //console.log (director.removeWorker('Петя'));
+    console.log(director.getWorker(worker01));
+    //console.log (director.setWorkerRate('Петя', 11));
 </script>
+
 </body>
 </html>
 
